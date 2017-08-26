@@ -13,7 +13,8 @@ exports.list_all_sensor = function(req, res) {
 
 exports.create_a_sensor = function(req, res) {
   var new_sensor = new Sensor(req.body);
-  new_sensor.sensorId = new_sensor._id;
+  new_sensor.sensor_id = new_sensor._id;
+  new_sensor.sensor_name = "SUT IoT sensor";
   new_sensor.save(function(err, sensor) {
     if (err)
       res.send(err);
@@ -23,7 +24,8 @@ exports.create_a_sensor = function(req, res) {
 
 
 exports.read_a_sensor = function(req, res) {
-  Sensor.findById(req.params.sensorId, function(err, sensor) {
+  console.log("GET sensor info of " + req.params.sensor_id);
+  Sensor.findById(req.params.sensor_id, function(err, sensor) {
     if (err)
       res.send(err);
     res.json(sensor);
@@ -32,7 +34,7 @@ exports.read_a_sensor = function(req, res) {
 
 
 exports.update_a_sensor = function(req, res) {
-  Sensor.findOneAndUpdate({_id: req.params.sensorId}, req.body, {new: true}, function(err, sensor) {
+  Sensor.findOneAndUpdate({_id: req.params.sensor_id}, req.body, {new: true}, function(err, sensor) {
     if (err)
       res.send(err);
     res.json(sensor);
@@ -43,10 +45,10 @@ exports.update_a_sensor = function(req, res) {
 exports.delete_a_sensor = function(req, res) {
 
   Sensor.remove({
-    _id: req.params.sensorId
+    _id: req.params.sensor_id
   }, function(err, sensor) {
     if (err)
       res.send(err);
-    res.json({ message: 'Sensor id[' + req.params.sensorId + '] successfully deleted' });
+    res.json({ message: 'Sensor id[' + req.params.sensor_id + '] successfully deleted' });
   });
 };

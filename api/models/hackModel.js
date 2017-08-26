@@ -8,7 +8,7 @@ var SensorSchema = new Schema({
     type: String,
     required: 'Kindly enter the name of the task'
   },
-  sensorId:{
+  sensor_id:{
     type: String
   },
   Created_date: {
@@ -25,6 +25,12 @@ var SensorSchema = new Schema({
   value: {
     type: String,
     default: "0"
+  },
+  latitude: {
+    type: String
+  },
+  longitude: {
+    type: String
   }
 });
 

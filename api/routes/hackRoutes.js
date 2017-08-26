@@ -9,7 +9,7 @@ module.exports = function(app) {
     .post(sensorList.create_a_sensor);
 
 
-  app.route('/sensor/:sensorId')
+  app.route('/sensor/:sensor_id')
     .get(sensorList.read_a_sensor)
     .put(sensorList.update_a_sensor)
     .delete(sensorList.delete_a_sensor);
